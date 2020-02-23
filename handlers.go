@@ -66,6 +66,10 @@ func licenceactivate(client *Client, data interface{}) {
 	var message Message
 	mapstructure.Decode(data, &lkey)
 	fmt.Println(lkey)
+	message.Name = "success"
+	message.Data = lkey
+	client.send <- message
+
 	go func() {
 		row := client.session.QueryRow("select licencekey, clientid, loginstatus, licencestatus, expirydate from licencemstr where licencekey=$1;", lkey.Lkey)
 		switch err := row.Scan(&licence.LicenceKey, &ClientID, &licence.LoginStatus, &licence.LicenceStatus, &licence.ExpiryDate); err {
