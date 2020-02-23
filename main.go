@@ -26,7 +26,7 @@ func main() {
 	router := NewRouter(dbconn)
 	//router.Handle("user add", adduser)
 	router.Handle("login", login)
-	router.Handle("lcvalidation", licencevalidation)
+	//router.Handle("lcvalidation", licencevalidation)
 	router.Handle("activate licence", licenceactivate)
 
 	http.Handle("/", router)
