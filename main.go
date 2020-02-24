@@ -33,5 +33,6 @@ func main() {
 	http.Handle("/", router)
 	//http.HandleFunc("/", handler)
 	//http.ListenAndServeTLS()
-	http.ListenAndServe(":4000", nil)
+	http.ListenAndServeTLS(":10443", "cert.pem", "key.pem", nil)
+
 }
