@@ -9,11 +9,15 @@ import (
 )
 
 func main() {
-	host := "licensemgrdb.postgres.database.azure.com"
+	//host := "licensemgrdb.postgres.database.azure.com"
+	host := "localhost"
 	port := 5432
-	user := "lashbot@licensemgrdb"
-	password := "createthebot@2020"
-	dbname := "lashbotdb"
+	//user := "lashbot@licensemgrdb"
+	user := "postgres"
+	//password := "createthebot@2020"
+	password := "postgres"
+	//dbname := "lashbotdb"
+	dbname := "lashbot"
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 
 	dbconn, err := sql.Open("postgres", psqlInfo)
@@ -27,12 +31,14 @@ func main() {
 	//router.Handle("user add", adduser)
 	router.Handle("login", login)
 	router.Handle("test", testsocket)
-	//router.Handle("lcvalidation", licencevalidation)
+	router.Handle("validate licence", licencevalidation)
 	router.Handle("activate licence", licenceactivate)
+	router.Handle("generate licence", licenceagenerate)
 
 	http.Handle("/", router)
 	//http.HandleFunc("/", handler)
 	//http.ListenAndServeTLS()
-	http.ListenAndServeTLS(":10443", "cert.pem", "key.pem", nil)
+	//http.ListenAndServeTLS(":10443", "cert.pem", "key.pem", nil)
+	http.ListenAndServe(":4000", nil)
 
 }
