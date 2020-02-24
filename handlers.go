@@ -57,6 +57,16 @@ func adduser(client *Client, data interface{}) {
 	client.send <- message
 }
 */
+func testsocket(client *Client, data interface{}) {
+	var lkey LicenceKey
+	var message Message
+	mapstructure.Decode(data, &lkey)
+	message.Name = "returning"
+	message.Data = lkey
+	client.send <- message
+
+}
+
 func licenceactivate(client *Client, data interface{}) {
 	var FirstNAME string
 	var LastNAME string
