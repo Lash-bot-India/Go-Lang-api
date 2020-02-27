@@ -10,14 +10,14 @@ import (
 
 func main() {
 	host := "licensemgrdb.postgres.database.azure.com"
-	host := "localhost"
+	//host := "localhost"
 	port := 5432
-	//user := "lashbot@licensemgrdb"
-	user := "postgres"
-	//password := "createthebot@2020"
-	password := "postgres"
-	//dbname := "lashbotdb"
-	dbname := "lashbot"
+	user := "lashbot@licensemgrdb"
+	//user := "postgres"
+	password := "createthebot@2020"
+	//password := "postgres"
+	dbname := "lashbotdb"
+	//dbname := "lashbot"
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 
 	dbconn, err := sql.Open("postgres", psqlInfo)
@@ -38,7 +38,7 @@ func main() {
 	http.Handle("/", router)
 	//http.HandleFunc("/", handler)
 	//http.ListenAndServeTLS()
-	//http.ListenAndServeTLS(":10443", "cert.pem", "key.pem", nil)
-	http.ListenAndServe(":4000", nil)
+	http.ListenAndServeTLS(":10443", "licensemanager_lashbot_io.crt", "licensemanager.key", nil)
+	//http.ListenAndServe(":4000", nil)
 
 }
