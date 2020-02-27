@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	//host := "licensemgrdb.postgres.database.azure.com"
+	host := "licensemgrdb.postgres.database.azure.com"
 	host := "localhost"
 	port := 5432
 	//user := "lashbot@licensemgrdb"
